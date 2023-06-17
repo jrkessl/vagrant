@@ -2,8 +2,7 @@ Vagrant.configure("2") do |config|
   config.vm.provision "shell", inline: <<-SHELL
       apt-get update -y
       echo "192.168.56.10  master1" >> /etc/hosts
-      echo "192.168.56.21  worker1" >> /etc/hosts
-      echo "192.168.56.22  worker2" >> /etc/hosts
+      echo "192.168.56.20  worker1" >> /etc/hosts
   SHELL
   
   config.vm.define "master" do |master|
