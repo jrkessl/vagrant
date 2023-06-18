@@ -1,3 +1,4 @@
+#!/bin/bash
 cat <<EOF | sudo tee /etc/modules-load.d/k8s.conf
 overlay
 br_netfilter
@@ -52,6 +53,7 @@ sudo apt-get update
 sudo apt install apt-transport-https=2.4.9 -y
 sudo apt install ca-certificates=20230311ubuntu0.22.04.1 -y
 sudo apt install curl=7.81.0-1ubuntu1.10 -y
+sudo apt-mark hold apt-transport-https ca-certificates curl
 
 # estes 3 comandos abaixo vieram deste link: 
 # https://github.com/kubernetes/release/issues/2862
@@ -62,13 +64,36 @@ curl -fsSL https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo gpg --de
     # curl: só baixa mesmo, o conteúdo.
     # gpg: salva o conteúdo recebido na forma "dearmored" (forma binária) no arquivo passado.
 
-sudo curl -fsSLo /usr/share/keyrings/kubernetes-archive-keyring.gpg https://packages.cloud.google.com/apt/doc/apt-key.gpg
-echo "deb [signed-by=/usr/share/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list
+# esses abaixo são os comandos originais do tutorial. Eles não salvam a chave em formato binário.
+# sudo curl -fsSLo /usr/share/keyrings/kubernetes-archive-keyring.gpg https://packages.cloud.google.com/apt/doc/apt-key.gpg
+# echo "deb [signed-by=/usr/share/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list
+# sudo apt-get update
+
 sudo apt-get update
-
-    # sudo cat /etc/apt/keyrings/cloud.google.gpg > conteúdo criptografado
-
 sudo apt install kubectl=1.25.7-00 -y 
 sudo apt install kubelet=1.25.7-00 -y 
 sudo apt install kubeadm=1.25.7-00 -y 
 sudo apt-mark hold kubeadm kubelet kubectl
+
+echo "Add the node IP to KUBELET_EXTRA_ARGS."
+sudo apt-get install jq=1.6-2.1ubuntu3 -y
+local_ip="$(ip --json a s | jq -r '.[] | if .ifname == "eth1" then .addr_info[] | if .family == "inet" then .local else empty end else empty end')"
+cat <<EOF | sudo tee /etc/default/kubelet
+KUBELET_EXTRA_ARGS=--node-ip=$local_ip
+EOF
+
+echo "Initialize Kubeadm On Master Node To Setup Control Plane (private IPs)"
+
+IPADDR=$local_ip
+NODENAME=$(hostname -s)
+POD_CIDR="10.0.0.0/16"
+
+echo "Initialize the master node control plane configurations"
+sudo kubeadm init --apiserver-advertise-address=$IPADDR  --apiserver-cert-extra-sans=$IPADDR  --pod-network-cidr=$POD_CIDR --node-name $NODENAME --ignore-preflight-errors Swap
+
+# kubeadm join 192.168.56.10:6443 --token mffuds.5pnnfbmzesgmmj0c \
+#        --discovery-token-ca-cert-hash sha256:5c8c03e4efff5087d755a5d569bdc7bd89dba16122521036122eba2ec7109b4a
+
+mkdir -p $HOME/.kube
+sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+sudo chown $(id -u):$(id -g) $HOME/.kube/config
