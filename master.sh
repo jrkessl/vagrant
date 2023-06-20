@@ -91,8 +91,8 @@ POD_CIDR="10.0.0.0/16"
 echo "Initialize the master node control plane configurations"
 sudo kubeadm init --apiserver-advertise-address=$IPADDR  --apiserver-cert-extra-sans=$IPADDR  --pod-network-cidr=$POD_CIDR --node-name $NODENAME --ignore-preflight-errors Swap
 
-# kubeadm join 192.168.56.10:6443 --token mffuds.5pnnfbmzesgmmj0c \
-#        --discovery-token-ca-cert-hash sha256:5c8c03e4efff5087d755a5d569bdc7bd89dba16122521036122eba2ec7109b4a
+# kubeadm join 192.168.56.10:6443 --token xxxxxxxxxxxxxxxxxxxxxxx \
+#        --discovery-token-ca-cert-hash sha256:xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 
 # make my kubeconfig file 
 mkdir -p /home/vagrant/.kube
