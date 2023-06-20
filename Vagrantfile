@@ -5,21 +5,34 @@ Vagrant.configure("2") do |config|
       echo "192.168.56.20  worker1" >> /etc/hosts
   SHELL
 
-  # disable folder share
-  config.vm.synced_folder ".", "/vagrant", disabled: true
+  config.vm.synced_folder "./share", "/vagrant", disabled: false, create: true
+  # config.vm.synced_folder "/tmp", "/tmp"
   
   config.vm.define "master" do |master|
-      master.vm.box = "bento/ubuntu-22.04"
-      master.vm.hostname = "master1"
-      master.vm.network "private_network", ip: "192.168.56.10"
-      master.vm.provider "virtualbox" do |vb|
-          vb.memory = 2048
-          vb.cpus = 2
-      end
-      master.vm.provision "shell",
-      path: "script-pra-colocar-no-vagrant.sh"
+    master.vm.box = "bento/ubuntu-22.04"
+    master.vm.hostname = "master1"
+    master.vm.network "private_network", ip: "192.168.56.10"
+    master.vm.provider "virtualbox" do |vb|
+        vb.memory = 2048
+        vb.cpus = 2
+    end
+    master.vm.provision "shell",
+    path: "master.sh"
   end
 
+  # config.vm.define "worker1" do |master|
+  #   master.vm.box = "bento/ubuntu-22.04"
+  #   master.vm.hostname = "worker1"
+  #   master.vm.network "private_network", ip: "192.168.56.20"
+  #   master.vm.provider "virtualbox" do |vb|
+  #       vb.memory = 2048
+  #       vb.cpus = 2
+  #   end
+  #   # master.vm.provision "shell",
+  #   # path: "worker.sh"
+  # end
+
+  
 #   config.vm.define "worker1" do |worker1|
 #       worker1.vm.box = "bento/ubuntu-22.04"
 #       worker1.vm.hostname = "worker1"
