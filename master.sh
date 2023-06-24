@@ -82,29 +82,33 @@ cat <<EOF | sudo tee /etc/default/kubelet
 KUBELET_EXTRA_ARGS=--node-ip=$local_ip
 EOF
 
-echo "Initialize Kubeadm On Master Node To Setup Control Plane (private IPs)"
-
+echo ""
+echo "### Initialize Kubeadm On Master Node To Setup Control Plane (private IPs)"
 IPADDR=$local_ip
 NODENAME=$(hostname -s)
 POD_CIDR="10.0.0.0/16"
-
-echo "Initialize the master node control plane configurations"
 sudo kubeadm init --apiserver-advertise-address=$IPADDR  --apiserver-cert-extra-sans=$IPADDR  --pod-network-cidr=$POD_CIDR --node-name $NODENAME --ignore-preflight-errors Swap
 
-# kubeadm join 192.168.56.10:6443 --token xxxxxxxxxxxxxxxxxxxxxxx \
-#        --discovery-token-ca-cert-hash sha256:xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-
-# make my kubeconfig file 
+echo ""
+echo "### Make my kubeconfig file"
 mkdir -p /home/vagrant/.kube
 sudo cp -i /etc/kubernetes/admin.conf /home/vagrant/.kube/config
 # sudo chown $(id -u):$(id -g) /home/vagrant/.kube/config
 sudo chown vagrant:vagrant /home/vagrant/.kube/config
 
+echo ""
+echo "### Create alias"
 echo "alias k=kubectl" >> /home/vagrant/.bashrc
 
 # mkdir -p $HOME/.kube
 # sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 # sudo chown $(id -u):$(id -g) $HOME/.kube/config
 
+echo ""
+echo "### Print join command"
 kubeadm token create --print-join-command > /vagrant/join-command
 sudo chmod 777 /vagrant/join-command
+
+echo ""
+echo "### Install pod network"
+kubectl apply -f https://raw.githubusercontent.com/projectcalico/calico/v3.25.0/manifests/calico.yaml
