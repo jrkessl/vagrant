@@ -97,7 +97,8 @@ sudo kubeadm init --apiserver-advertise-address=$IPADDR  --apiserver-cert-extra-
 # make my kubeconfig file 
 mkdir -p /home/vagrant/.kube
 sudo cp -i /etc/kubernetes/admin.conf /home/vagrant/.kube/config
-sudo chown $(id -u):$(id -g) /home/vagrant/.kube/config
+# sudo chown $(id -u):$(id -g) /home/vagrant/.kube/config
+sudo chown vagrant:vagrant /home/vagrant/.kube/config
 
 echo "alias k=kubectl" >> /home/vagrant/.bashrc
 

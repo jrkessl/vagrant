@@ -20,17 +20,17 @@ Vagrant.configure("2") do |config|
     path: "master.sh"
   end
 
-  # config.vm.define "worker1" do |master|
-  #   master.vm.box = "bento/ubuntu-22.04"
-  #   master.vm.hostname = "worker1"
-  #   master.vm.network "private_network", ip: "192.168.56.20"
-  #   master.vm.provider "virtualbox" do |vb|
-  #       vb.memory = 2048
-  #       vb.cpus = 2
-  #   end
-  #   # master.vm.provision "shell",
-  #   # path: "worker.sh"
-  # end
+  config.vm.define "worker1" do |master|
+    master.vm.box = "bento/ubuntu-22.04"
+    master.vm.hostname = "worker1"
+    master.vm.network "private_network", ip: "192.168.56.20"
+    master.vm.provider "virtualbox" do |vb|
+        vb.memory = 2048
+        vb.cpus = 2
+    end
+    master.vm.provision "shell",
+    path: "worker.sh"
+  end
 
   
 #   config.vm.define "worker1" do |worker1|

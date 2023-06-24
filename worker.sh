@@ -81,3 +81,9 @@ local_ip="$(ip --json a s | jq -r '.[] | if .ifname == "eth1" then .addr_info[] 
 cat <<EOF | sudo tee /etc/default/kubelet
 KUBELET_EXTRA_ARGS=--node-ip=$local_ip
 EOF
+
+# Creating some alias
+echo "alias k=kubectl" >> /home/vagrant/.bashrc
+
+# Joining cluster
+sudo /vagrant/join-command
