@@ -91,6 +91,10 @@ sudo kubeadm init --apiserver-advertise-address=$IPADDR  --apiserver-cert-extra-
 
 echo ""
 echo "### Make my kubeconfig file"
+# For root user
+mkdir -p /root/.kube
+sudo cp -i /etc/kubernetes/admin.conf /root/.kube/config
+# For vagrant user
 mkdir -p /home/vagrant/.kube
 sudo cp -i /etc/kubernetes/admin.conf /home/vagrant/.kube/config
 # sudo chown $(id -u):$(id -g) /home/vagrant/.kube/config
@@ -99,6 +103,7 @@ sudo chown vagrant:vagrant /home/vagrant/.kube/config
 echo ""
 echo "### Create alias"
 echo "alias k=kubectl" >> /home/vagrant/.bashrc
+echo "alias k=kubectl" >> /root/.bashrc
 
 # mkdir -p $HOME/.kube
 # sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
@@ -110,5 +115,5 @@ kubeadm token create --print-join-command > /vagrant/join-command
 sudo chmod 777 /vagrant/join-command
 
 echo ""
-echo "### Install pod network"
-kubectl apply -f https://raw.githubusercontent.com/projectcalico/calico/v3.25.0/manifests/calico.yaml
+echo "### Install pod network (skipped)"
+# kubectl apply -f https://raw.githubusercontent.com/projectcalico/calico/v3.25.0/manifests/calico.yaml
