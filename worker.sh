@@ -87,3 +87,4 @@ echo "alias k=kubectl" >> /home/vagrant/.bashrc
 
 # Joining cluster
 sudo /vagrant/join-command
+
