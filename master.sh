@@ -4,6 +4,7 @@ echo "### Starting master script"
 
 echo ""
 echo "### Initialize Kubeadm On Master Node To Setup Control Plane (private IPs)"
+local_ip="$(ip --json a s | jq -r '.[] | if .ifname == "eth1" then .addr_info[] | if .family == "inet" then .local else empty end else empty end')"
 IPADDR=$local_ip
 NODENAME=$(hostname -s)
 POD_CIDR="10.0.0.0/16"
