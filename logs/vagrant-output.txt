@@ -1,0 +1,615 @@
+Bringing machine 'master1' up with 'virtualbox' provider...
+==> master1: Importing base box 'bento/ubuntu-22.04'...
+[KProgress: 10%[KProgress: 20%[KProgress: 30%[KProgress: 40%[KProgress: 90%[K==> master1: Matching MAC address for NAT networking...
+==> master1: Checking if box 'bento/ubuntu-22.04' version '202303.13.0' is up to date...
+==> master1: Setting the name of the VM: vagrant_master1_1688656016261_70456
+==> master1: Clearing any previously set network interfaces...
+==> master1: Preparing network interfaces based on configuration...
+    master1: Adapter 1: nat
+    master1: Adapter 2: hostonly
+==> master1: Forwarding ports...
+    master1: 22 (guest) => 2222 (host) (adapter 1)
+==> master1: Running 'pre-boot' VM customizations...
+==> master1: Booting VM...
+==> master1: Waiting for machine to boot. This may take a few minutes...
+    master1: SSH address: 127.0.0.1:2222
+    master1: SSH username: vagrant
+    master1: SSH auth method: private key
+    master1: Warning: Connection reset. Retrying...
+    master1: Warning: Remote connection disconnect. Retrying...
+    master1: 
+    master1: Vagrant insecure key detected. Vagrant will automatically replace
+    master1: this with a newly generated keypair for better security.
+    master1: 
+    master1: Inserting generated public key within guest...
+    master1: Removing insecure key from the guest if it's present...
+    master1: Key inserted! Disconnecting and reconnecting using new SSH key...
+==> master1: Machine booted and ready!
+==> master1: Checking for guest additions in VM...
+==> master1: Setting hostname...
+==> master1: Configuring and enabling network interfaces...
+==> master1: Mounting shared folders...
+    master1: /vagrant => /home/juliano/Documents/github/vagrant/share
+==> master1: Running provisioner: shell...
+    master1: Running: inline script
+    master1: Hit:1 http://us.archive.ubuntu.com/ubuntu jammy InRelease
+    master1: Get:2 http://us.archive.ubuntu.com/ubuntu jammy-updates InRelease [119 kB]
+    master1: Get:3 http://us.archive.ubuntu.com/ubuntu jammy-backports InRelease [108 kB]
+    master1: Get:4 http://us.archive.ubuntu.com/ubuntu jammy-security InRelease [110 kB]
+    master1: Get:5 http://us.archive.ubuntu.com/ubuntu jammy-updates/main amd64 Packages [773 kB]
+    master1: Get:6 http://us.archive.ubuntu.com/ubuntu jammy-updates/main Translation-en [197 kB]
+    master1: Get:7 http://us.archive.ubuntu.com/ubuntu jammy-updates/restricted amd64 Packages [540 kB]
+    master1: Get:8 http://us.archive.ubuntu.com/ubuntu jammy-updates/restricted Translation-en [84.3 kB]
+    master1: Get:9 http://us.archive.ubuntu.com/ubuntu jammy-updates/universe amd64 Packages [939 kB]
+    master1: Get:10 http://us.archive.ubuntu.com/ubuntu jammy-updates/universe Translation-en [200 kB]
+    master1: Get:11 http://us.archive.ubuntu.com/ubuntu jammy-updates/multiverse amd64 Packages [48.4 kB]
+    master1: Get:12 http://us.archive.ubuntu.com/ubuntu jammy-updates/multiverse Translation-en [11.6 kB]
+    master1: Get:13 http://us.archive.ubuntu.com/ubuntu jammy-backports/main amd64 Packages [40.9 kB]
+    master1: Get:14 http://us.archive.ubuntu.com/ubuntu jammy-backports/main Translation-en [10.2 kB]
+    master1: Get:15 http://us.archive.ubuntu.com/ubuntu jammy-backports/universe amd64 Packages [22.2 kB]
+    master1: Get:16 http://us.archive.ubuntu.com/ubuntu jammy-backports/universe Translation-en [15.0 kB]
+    master1: Get:17 http://us.archive.ubuntu.com/ubuntu jammy-security/main amd64 Packages [546 kB]
+    master1: Get:18 http://us.archive.ubuntu.com/ubuntu jammy-security/main Translation-en [135 kB]
+    master1: Get:19 http://us.archive.ubuntu.com/ubuntu jammy-security/restricted amd64 Packages [533 kB]
+    master1: Get:20 http://us.archive.ubuntu.com/ubuntu jammy-security/restricted Translation-en [83.7 kB]
+    master1: Get:21 http://us.archive.ubuntu.com/ubuntu jammy-security/universe amd64 Packages [747 kB]
+    master1: Get:22 http://us.archive.ubuntu.com/ubuntu jammy-security/universe Translation-en [133 kB]
+    master1: Get:23 http://us.archive.ubuntu.com/ubuntu jammy-security/multiverse amd64 Packages [35.9 kB]
+    master1: Get:24 http://us.archive.ubuntu.com/ubuntu jammy-security/multiverse Translation-en [7,040 B]
+    master1: Fetched 5,439 kB in 5s (1,023 kB/s)
+    master1: Reading package lists...
+==> master1: Running provisioner: shell...
+    master1: Running: /tmp/vagrant-shell20230706-1338223-dnp4o9.sh
+    master1: overlay
+    master1: br_netfilter
+    master1: net.bridge.bridge-nf-call-iptables  = 1
+    master1: net.bridge.bridge-nf-call-ip6tables = 1
+    master1: net.ipv4.ip_forward                 = 1
+    master1: * Applying /etc/sysctl.d/10-console-messages.conf ...
+    master1: kernel.printk = 4 4 1 7
+    master1: * Applying /etc/sysctl.d/10-ipv6-privacy.conf ...
+    master1: net.ipv6.conf.all.use_tempaddr = 2
+    master1: net.ipv6.conf.default.use_tempaddr = 2
+    master1: * Applying /etc/sysctl.d/10-kernel-hardening.conf ...
+    master1: kernel.kptr_restrict = 1
+    master1: * Applying /etc/sysctl.d/10-magic-sysrq.conf ...
+    master1: kernel.sysrq = 176
+    master1: * Applying /etc/sysctl.d/10-network-security.conf ...
+    master1: net.ipv4.conf.default.rp_filter = 2
+    master1: net.ipv4.conf.all.rp_filter = 2
+    master1: * Applying /etc/sysctl.d/10-ptrace.conf ...
+    master1: kernel.yama.ptrace_scope = 1
+    master1: * Applying /etc/sysctl.d/10-zeropage.conf ...
+    master1: vm.mmap_min_addr = 65536
+    master1: * Applying /usr/lib/sysctl.d/50-default.conf ...
+    master1: kernel.core_uses_pid = 1
+    master1: net.ipv4.conf.default.rp_filter = 2
+    master1: net.ipv4.conf.default.accept_source_route = 0
+    master1: sysctl: setting key "net.ipv4.conf.all.accept_source_route": Invalid argument
+    master1: net.ipv4.conf.default.promote_secondaries = 1
+    master1: sysctl: setting key "net.ipv4.conf.all.promote_secondaries": Invalid argument
+    master1: net.ipv4.ping_group_range = 0 2147483647
+    master1: net.core.default_qdisc = fq_codel
+    master1: fs.protected_hardlinks = 1
+    master1: fs.protected_symlinks = 1
+    master1: fs.protected_regular = 1
+    master1: fs.protected_fifos = 1
+    master1: * Applying /usr/lib/sysctl.d/50-pid-max.conf ...
+    master1: kernel.pid_max = 4194304
+    master1: * Applying /usr/lib/sysctl.d/99-protect-links.conf ...
+    master1: fs.protected_fifos = 1
+    master1: fs.protected_hardlinks = 1
+    master1: fs.protected_regular = 2
+    master1: fs.protected_symlinks = 1
+    master1: * Applying /etc/sysctl.d/99-sysctl.conf ...
+    master1: * Applying /etc/sysctl.d/k8s.conf ...
+    master1: net.bridge.bridge-nf-call-iptables = 1
+    master1: net.bridge.bridge-nf-call-ip6tables = 1
+    master1: net.ipv4.ip_forward = 1
+    master1: * Applying /etc/sysctl.conf ...
+    master1: overlay
+    master1: br_netfilter
+    master1: net.bridge.bridge-nf-call-iptables  = 1
+    master1: net.ipv4.ip_forward                 = 1
+    master1: net.bridge.bridge-nf-call-ip6tables = 1
+    master1: net.bridge.bridge-nf-call-iptables  = 1
+    master1: net.ipv4.ip_forward                 = 1
+    master1: net.bridge.bridge-nf-call-ip6tables = 1
+    master1: * Applying /etc/sysctl.d/10-console-messages.conf ...
+    master1: kernel.printk = 4 4 1 7
+    master1: * Applying /etc/sysctl.d/10-ipv6-privacy.conf ...
+    master1: net.ipv6.conf.all.use_tempaddr = 2
+    master1: net.ipv6.conf.default.use_tempaddr = 2
+    master1: * Applying /etc/sysctl.d/10-kernel-hardening.conf ...
+    master1: kernel.kptr_restrict = 1
+    master1: * Applying /etc/sysctl.d/10-magic-sysrq.conf ...
+    master1: kernel.sysrq = 176
+    master1: * Applying /etc/sysctl.d/10-network-security.conf ...
+    master1: net.ipv4.conf.default.rp_filter = 2
+    master1: net.ipv4.conf.all.rp_filter = 2
+    master1: * Applying /etc/sysctl.d/10-ptrace.conf ...
+    master1: kernel.yama.ptrace_scope = 1
+    master1: * Applying /etc/sysctl.d/10-zeropage.conf ...
+    master1: vm.mmap_min_addr = 65536
+    master1: * Applying /usr/lib/sysctl.d/50-default.conf ...
+    master1: kernel.core_uses_pid = 1
+    master1: net.ipv4.conf.default.rp_filter = 2
+    master1: net.ipv4.conf.default.accept_source_route = 0
+    master1: sysctl: setting key "net.ipv4.conf.all.accept_source_route": Invalid argument
+    master1: net.ipv4.conf.default.promote_secondaries = 1
+    master1: sysctl: setting key "net.ipv4.conf.all.promote_secondaries": Invalid argument
+    master1: net.ipv4.ping_group_range = 0 2147483647
+    master1: net.core.default_qdisc = fq_codel
+    master1: fs.protected_hardlinks = 1
+    master1: fs.protected_symlinks = 1
+    master1: fs.protected_regular = 1
+    master1: fs.protected_fifos = 1
+    master1: * Applying /usr/lib/sysctl.d/50-pid-max.conf ...
+    master1: kernel.pid_max = 4194304
+    master1: * Applying /etc/sysctl.d/99-kubernetes-cri.conf ...
+    master1: net.bridge.bridge-nf-call-iptables = 1
+    master1: net.ipv4.ip_forward = 1
+    master1: net.bridge.bridge-nf-call-ip6tables = 1
+    master1: * Applying /usr/lib/sysctl.d/99-protect-links.conf ...
+    master1: fs.protected_fifos = 1
+    master1: fs.protected_hardlinks = 1
+    master1: fs.protected_regular = 2
+    master1: fs.protected_symlinks = 1
+    master1: * Applying /etc/sysctl.d/99-sysctl.conf ...
+    master1: * Applying /etc/sysctl.d/k8s.conf ...
+    master1: net.bridge.bridge-nf-call-iptables = 1
+    master1: net.bridge.bridge-nf-call-ip6tables = 1
+    master1: net.ipv4.ip_forward = 1
+    master1: * Applying /etc/sysctl.conf ...
+    master1: deb https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/xUbuntu_20.04/ /
+    master1: deb http://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable:/cri-o:/1.23/xUbuntu_20.04/ /
+    master1:   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+    master1:                                  Dload  Upload   Total   Spent    Left  Speed
+    master1:   0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0Warning: apt-key is deprecated. Manage keyring files in trusted.gpg.d instead (see apt-key(8)).
+    master1:   0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   393  100   393    0     0    446      0 --:--:-- --:--:-- --:--:--   446
+    master1: 100   394  100   394    0     0    358      0  0:00:01  0:00:01 --:--:--   358100   394  100   394    0     0    358      0  0:00:01  0:00:01 --:--:--     0
+    master1: 100   395  100   395    0     0    300      0  0:00:01  0:00:01 --:--:--   300
+    master1: 100   396  100   396    0     0    259      0  0:00:01  0:00:01 --:--:--   259
+    master1: 100   397  100   397    0     0    228      0  0:00:01  0:00:01 --:--:--   228
+    master1: 100  1093  100  1093    0     0    559      0  0:00:01  0:00:01 --:--:--   559
+    master1: OK
+    master1:   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+    master1:                                  Dload  Upload   Total   Spent    Left  Speed
+    master1:   0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0Warning: apt-key is deprecated. Manage keyring files in trusted.gpg.d instead (see apt-key(8)).
+    master1:   0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100  1093  100  1093    0     0   1525      0 --:--:-- --:--:-- --:--:--  1524
+    master1: OK
+    master1: Hit:1 http://us.archive.ubuntu.com/ubuntu jammy InRelease
+    master1: Hit:2 http://us.archive.ubuntu.com/ubuntu jammy-updates InRelease
+    master1: Hit:3 http://us.archive.ubuntu.com/ubuntu jammy-backports InRelease
+    master1: Get:4 http://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable:/cri-o:/1.23/xUbuntu_20.04  InRelease [1,626 B]
+    master1: Hit:5 http://us.archive.ubuntu.com/ubuntu jammy-security InRelease
+    master1: Get:6 https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/xUbuntu_20.04  InRelease [1,642 B]
+    master1: Get:7 http://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable:/cri-o:/1.23/xUbuntu_20.04  Packages [1,923 B]
+    master1: Get:8 https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/xUbuntu_20.04  Packages [14.7 kB]
+    master1: Fetched 19.9 kB in 2s (13.1 kB/s)
+    master1: Reading package lists...
+    master1: Reading package lists...
+    master1: Building dependency tree...
+    master1: Reading state information...
+    master1: The following additional packages will be installed:
+    master1:   conmon containers-common
+    master1: Suggested packages:
+    master1:   containernetworking-plugins
+    master1: The following NEW packages will be installed:
+    master1:   conmon containers-common cri-o cri-o-runc cri-tools
+    master1: 0 upgraded, 5 newly installed, 0 to remove and 101 not upgraded.
+    master1: Need to get 31.1 MB of archives.
+    master1: After this operation, 152 MB of additional disk space will be used.
+    master1: Get:1 http://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable:/cri-o:/1.23/xUbuntu_20.04  cri-o 1.23.5~0 [19.9 MB]
+    master1: Get:2 https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/xUbuntu_20.04  conmon 100:2.1.2~0 [33.7 kB]
+    master1: Get:3 https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/xUbuntu_20.04  containers-common 100:1-22 [52.4 kB]
+    master1: Get:4 https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/xUbuntu_20.04  cri-tools 1.21.0~2 [7,414 kB]
+    master1: Get:5 https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/xUbuntu_20.04  cri-o-runc 1.0.1~2 [3,631 kB]
+    master1: dpkg-preconfigure: unable to re-open stdin: No such file or directory
+    master1: Fetched 31.1 MB in 13s (2,428 kB/s)
+    master1: Selecting previously unselected package conmon.
+    master1: (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 44187 files and directories currently installed.)
+    master1: Preparing to unpack .../conmon_100%3a2.1.2~0_amd64.deb ...
+    master1: Unpacking conmon (100:2.1.2~0) ...
+    master1: Selecting previously unselected package containers-common.
+    master1: Preparing to unpack .../containers-common_100%3a1-22_all.deb ...
+    master1: Unpacking containers-common (100:1-22) ...
+    master1: Selecting previously unselected package cri-o.
+    master1: Preparing to unpack .../cri-o_1.23.5~0_amd64.deb ...
+    master1: Unpacking cri-o (1.23.5~0) ...
+    master1: Selecting previously unselected package cri-tools.
+    master1: Preparing to unpack .../cri-tools_1.21.0~2_amd64.deb ...
+    master1: Unpacking cri-tools (1.21.0~2) ...
+    master1: Selecting previously unselected package cri-o-runc.
+    master1: Preparing to unpack .../cri-o-runc_1.0.1~2_amd64.deb ...
+    master1: Unpacking cri-o-runc (1.0.1~2) ...
+    master1: Setting up cri-o-runc (1.0.1~2) ...
+    master1: Setting up conmon (100:2.1.2~0) ...
+    master1: Setting up containers-common (100:1-22) ...
+    master1: Setting up cri-tools (1.21.0~2) ...
+    master1: Setting up cri-o (1.23.5~0) ...
+    master1: Processing triggers for man-db (2.10.2-1) ...
+    master1: 
+    master1: Running kernel seems to be up-to-date.
+    master1: 
+    master1: No services need to be restarted.
+    master1: 
+    master1: No containers need to be restarted.
+    master1: 
+    master1: No user sessions are running outdated binaries.
+    master1: 
+    master1: No VM guests are running outdated hypervisor (qemu) binaries on this host.
+    master1: Created symlink /etc/systemd/system/cri-o.service → /lib/systemd/system/crio.service.
+    master1: Created symlink /etc/systemd/system/multi-user.target.wants/crio.service → /lib/systemd/system/crio.service.
+    master1: Install Kubeadm & Kubelet & Kubectl on all Nodes
+    master1: Hit:1 http://us.archive.ubuntu.com/ubuntu jammy InRelease
+    master1: Hit:2 http://us.archive.ubuntu.com/ubuntu jammy-updates InRelease
+    master1: Hit:3 http://us.archive.ubuntu.com/ubuntu jammy-backports InRelease
+    master1: Get:4 http://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable:/cri-o:/1.23/xUbuntu_20.04  InRelease [1,626 B]
+    master1: Hit:5 http://us.archive.ubuntu.com/ubuntu jammy-security InRelease
+    master1: Get:6 https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/xUbuntu_20.04  InRelease [1,642 B]
+    master1: Fetched 3,268 B in 1s (3,073 B/s)
+    master1: Reading package lists...
+    master1: 
+    master1: WARNING: apt does not have a stable CLI interface. Use with caution in scripts.
+    master1: 
+    master1: Reading package lists...
+    master1: Building dependency tree...
+    master1: Reading state information...
+    master1: The following NEW packages will be installed:
+    master1:   apt-transport-https
+    master1: 0 upgraded, 1 newly installed, 0 to remove and 101 not upgraded.
+    master1: Need to get 1,510 B of archives.
+    master1: After this operation, 169 kB of additional disk space will be used.
+    master1: Get:1 http://us.archive.ubuntu.com/ubuntu jammy-updates/universe amd64 apt-transport-https all 2.4.9 [1,510 B]
+    master1: dpkg-preconfigure: unable to re-open stdin: No such file or directory
+    master1: Fetched 1,510 B in 0s (3,257 B/s)
+    master1: Selecting previously unselected package apt-transport-https.
+    master1: (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 44271 files and directories currently installed.)
+    master1: Preparing to unpack .../apt-transport-https_2.4.9_all.deb ...
+    master1: Unpacking apt-transport-https (2.4.9) ...
+    master1: Setting up apt-transport-https (2.4.9) ...
+    master1: 
+    master1: Running kernel seems to be up-to-date.
+    master1: 
+    master1: No services need to be restarted.
+    master1: 
+    master1: No containers need to be restarted.
+    master1: 
+    master1: No user sessions are running outdated binaries.
+    master1: 
+    master1: No VM guests are running outdated hypervisor (qemu) binaries on this host.
+    master1: 
+    master1: WARNING: apt does not have a stable CLI interface. Use with caution in scripts.
+    master1: 
+    master1: Reading package lists...
+    master1: Building dependency tree...
+    master1: Reading state information...
+    master1: The following packages will be upgraded:
+    master1:   ca-certificates
+    master1: 1 upgraded, 0 newly installed, 0 to remove and 100 not upgraded.
+    master1: Need to get 155 kB of archives.
+    master1: After this operation, 23.6 kB of additional disk space will be used.
+    master1: Get:1 http://us.archive.ubuntu.com/ubuntu jammy-updates/main amd64 ca-certificates all 20230311ubuntu0.22.04.1 [155 kB]
+    master1: dpkg-preconfigure: unable to re-open stdin: No such file or directory
+    master1: Fetched 155 kB in 1s (121 kB/s)
+    master1: (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 44275 files and directories currently installed.)
+    master1: Preparing to unpack .../ca-certificates_20230311ubuntu0.22.04.1_all.deb ...
+    master1: Unpacking ca-certificates (20230311ubuntu0.22.04.1) over (20211016ubuntu0.22.04.1) ...
+    master1: Setting up ca-certificates (20230311ubuntu0.22.04.1) ...
+    master1: Updating certificates in /etc/ssl/certs...
+    master1: rehash: warning: skipping ca-certificates.crt,it does not contain exactly one certificate or CRL
+    master1: 19 added, 6 removed; done.
+    master1: Processing triggers for man-db (2.10.2-1) ...
+    master1: Processing triggers for ca-certificates (20230311ubuntu0.22.04.1) ...
+    master1: Updating certificates in /etc/ssl/certs...
+    master1: 0 added, 0 removed; done.
+    master1: Running hooks in /etc/ca-certificates/update.d...
+    master1: done.
+    master1: 
+    master1: Running kernel seems to be up-to-date.
+    master1: 
+    master1: No services need to be restarted.
+    master1: 
+    master1: No containers need to be restarted.
+    master1: 
+    master1: No user sessions are running outdated binaries.
+    master1: 
+    master1: No VM guests are running outdated hypervisor (qemu) binaries on this host.
+    master1: 
+    master1: WARNING: apt does not have a stable CLI interface. Use with caution in scripts.
+    master1: 
+    master1: Reading package lists...
+    master1: Building dependency tree...
+    master1: Reading state information...
+    master1: The following additional packages will be installed:
+    master1:   libcurl4
+    master1: The following packages will be upgraded:
+    master1:   curl libcurl4
+    master1: 2 upgraded, 0 newly installed, 0 to remove and 98 not upgraded.
+    master1: Need to get 484 kB of archives.
+    master1: After this operation, 4,096 B of additional disk space will be used.
+    master1: Get:1 http://us.archive.ubuntu.com/ubuntu jammy-updates/main amd64 curl amd64 7.81.0-1ubuntu1.10 [194 kB]
+    master1: Get:2 http://us.archive.ubuntu.com/ubuntu jammy-updates/main amd64 libcurl4 amd64 7.81.0-1ubuntu1.10 [290 kB]
+    master1: dpkg-preconfigure: unable to re-open stdin: No such file or directory
+    master1: Fetched 484 kB in 2s (213 kB/s)
+    master1: (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 44288 files and directories currently installed.)
+    master1: Preparing to unpack .../curl_7.81.0-1ubuntu1.10_amd64.deb ...
+    master1: Unpacking curl (7.81.0-1ubuntu1.10) over (7.81.0-1ubuntu1.8) ...
+    master1: Preparing to unpack .../libcurl4_7.81.0-1ubuntu1.10_amd64.deb ...
+    master1: Unpacking libcurl4:amd64 (7.81.0-1ubuntu1.10) over (7.81.0-1ubuntu1.8) ...
+    master1: Setting up libcurl4:amd64 (7.81.0-1ubuntu1.10) ...
+    master1: Setting up curl (7.81.0-1ubuntu1.10) ...
+    master1: Processing triggers for man-db (2.10.2-1) ...
+    master1: Processing triggers for libc-bin (2.35-0ubuntu3.1) ...
+    master1: 
+    master1: Running kernel seems to be up-to-date.
+    master1: 
+    master1: No services need to be restarted.
+    master1: 
+    master1: No containers need to be restarted.
+    master1: 
+    master1: No user sessions are running outdated binaries.
+    master1: 
+    master1: No VM guests are running outdated hypervisor (qemu) binaries on this host.
+    master1: apt-transport-https set on hold.
+    master1: ca-certificates set on hold.
+    master1: curl set on hold.
+    master1: deb [signed-by=/etc/apt/keyrings/kubernetes.gpg] https://apt.kubernetes.io/ kubernetes-xenial main
+    master1: Hit:1 http://us.archive.ubuntu.com/ubuntu jammy InRelease
+    master1: Hit:2 http://us.archive.ubuntu.com/ubuntu jammy-updates InRelease
+    master1: Hit:3 http://us.archive.ubuntu.com/ubuntu jammy-backports InRelease
+    master1: Get:5 http://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable:/cri-o:/1.23/xUbuntu_20.04  InRelease [1,626 B]
+    master1: Hit:6 http://us.archive.ubuntu.com/ubuntu jammy-security InRelease
+    master1: Get:7 https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/xUbuntu_20.04  InRelease [1,642 B]
+    master1: Get:4 https://packages.cloud.google.com/apt kubernetes-xenial InRelease [8,993 B]
+    master1: Get:8 https://packages.cloud.google.com/apt kubernetes-xenial/main amd64 Packages [67.3 kB]
+    master1: Fetched 79.5 kB in 3s (29.5 kB/s)
+    master1: Reading package lists...
+    master1: 
+    master1: WARNING: apt does not have a stable CLI interface. Use with caution in scripts.
+    master1: 
+    master1: Reading package lists...
+    master1: Building dependency tree...
+    master1: Reading state information...
+    master1: The following NEW packages will be installed:
+    master1:   kubectl
+    master1: 0 upgraded, 1 newly installed, 0 to remove and 99 not upgraded.
+    master1: Need to get 9,510 kB of archives.
+    master1: After this operation, 45.0 MB of additional disk space will be used.
+    master1: Get:1 https://packages.cloud.google.com/apt kubernetes-xenial/main amd64 kubectl amd64 1.25.7-00 [9,510 kB]
+    master1: dpkg-preconfigure: unable to re-open stdin: No such file or directory
+    master1: Fetched 9,510 kB in 4s (2,418 kB/s)
+    master1: Selecting previously unselected package kubectl.
+    master1: (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 44288 files and directories currently installed.)
+    master1: Preparing to unpack .../kubectl_1.25.7-00_amd64.deb ...
+    master1: Unpacking kubectl (1.25.7-00) ...
+    master1: Setting up kubectl (1.25.7-00) ...
+    master1: 
+    master1: Running kernel seems to be up-to-date.
+    master1: 
+    master1: No services need to be restarted.
+    master1: 
+    master1: No containers need to be restarted.
+    master1: 
+    master1: No user sessions are running outdated binaries.
+    master1: 
+    master1: No VM guests are running outdated hypervisor (qemu) binaries on this host.
+    master1: 
+    master1: WARNING: apt does not have a stable CLI interface. Use with caution in scripts.
+    master1: 
+    master1: Reading package lists...
+    master1: Building dependency tree...
+    master1: Reading state information...
+    master1: The following additional packages will be installed:
+    master1:   conntrack ebtables kubernetes-cni socat
+    master1: The following NEW packages will be installed:
+    master1:   conntrack ebtables kubelet kubernetes-cni socat
+    master1: 0 upgraded, 5 newly installed, 0 to remove and 100 not upgraded.
+    master1: Need to get 47.5 MB of archives.
+    master1: After this operation, 187 MB of additional disk space will be used.
+    master1: Get:1 http://us.archive.ubuntu.com/ubuntu jammy/main amd64 conntrack amd64 1:1.4.6-2build2 [33.5 kB]
+    master1: Get:4 http://us.archive.ubuntu.com/ubuntu jammy/main amd64 ebtables amd64 2.0.11-4build2 [84.9 kB]
+    master1: Get:5 http://us.archive.ubuntu.com/ubuntu jammy/main amd64 socat amd64 1.7.4.1-3ubuntu4 [349 kB]
+    master1: Get:2 https://packages.cloud.google.com/apt kubernetes-xenial/main amd64 kubernetes-cni amd64 1.2.0-00 [27.6 MB]
+    master1: Get:3 https://packages.cloud.google.com/apt kubernetes-xenial/main amd64 kubelet amd64 1.25.7-00 [19.5 MB]
+    master1: dpkg-preconfigure: unable to re-open stdin: No such file or directory
+    master1: Fetched 47.5 MB in 9s (5,255 kB/s)
+    master1: Selecting previously unselected package conntrack.
+    master1: (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 44289 files and directories currently installed.)
+    master1: Preparing to unpack .../conntrack_1%3a1.4.6-2build2_amd64.deb ...
+    master1: Unpacking conntrack (1:1.4.6-2build2) ...
+    master1: Selecting previously unselected package ebtables.
+    master1: Preparing to unpack .../ebtables_2.0.11-4build2_amd64.deb ...
+    master1: Unpacking ebtables (2.0.11-4build2) ...
+    master1: Selecting previously unselected package kubernetes-cni.
+    master1: Preparing to unpack .../kubernetes-cni_1.2.0-00_amd64.deb ...
+    master1: Unpacking kubernetes-cni (1.2.0-00) ...
+    master1: Selecting previously unselected package socat.
+    master1: Preparing to unpack .../socat_1.7.4.1-3ubuntu4_amd64.deb ...
+    master1: Unpacking socat (1.7.4.1-3ubuntu4) ...
+    master1: Selecting previously unselected package kubelet.
+    master1: Preparing to unpack .../kubelet_1.25.7-00_amd64.deb ...
+    master1: Unpacking kubelet (1.25.7-00) ...
+    master1: Setting up conntrack (1:1.4.6-2build2) ...
+    master1: Setting up ebtables (2.0.11-4build2) ...
+    master1: Setting up socat (1.7.4.1-3ubuntu4) ...
+    master1: Setting up kubernetes-cni (1.2.0-00) ...
+    master1: Setting up kubelet (1.25.7-00) ...
+    master1: Created symlink /etc/systemd/system/multi-user.target.wants/kubelet.service → /lib/systemd/system/kubelet.service.
+    master1: Processing triggers for man-db (2.10.2-1) ...
+    master1: 
+    master1: Running kernel seems to be up-to-date.
+    master1: 
+    master1: No services need to be restarted.
+    master1: 
+    master1: No containers need to be restarted.
+    master1: 
+    master1: No user sessions are running outdated binaries.
+    master1: 
+    master1: No VM guests are running outdated hypervisor (qemu) binaries on this host.
+    master1: 
+    master1: WARNING: apt does not have a stable CLI interface. Use with caution in scripts.
+    master1: 
+    master1: Reading package lists...
+    master1: Building dependency tree...
+    master1: Reading state information...
+    master1: The following additional packages will be installed:
+    master1:   cri-tools
+    master1: The following NEW packages will be installed:
+    master1:   kubeadm
+    master1: The following packages will be upgraded:
+    master1:   cri-tools
+    master1: 1 upgraded, 1 newly installed, 0 to remove and 100 not upgraded.
+    master1: Need to get 28.2 MB of archives.
+    master1: After this operation, 59.2 MB of additional disk space will be used.
+    master1: Get:1 https://packages.cloud.google.com/apt kubernetes-xenial/main amd64 cri-tools amd64 1.26.0-00 [18.9 MB]
+    master1: Get:2 https://packages.cloud.google.com/apt kubernetes-xenial/main amd64 kubeadm amd64 1.25.7-00 [9,232 kB]
+    master1: dpkg-preconfigure: unable to re-open stdin: No such file or directory
+    master1: Fetched 28.2 MB in 7s (3,974 kB/s)
+    master1: (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 44378 files and directories currently installed.)
+    master1: Preparing to unpack .../cri-tools_1.26.0-00_amd64.deb ...
+    master1: Unpacking cri-tools (1.26.0-00) over (1.21.0~2) ...
+    master1: Selecting previously unselected package kubeadm.
+    master1: Preparing to unpack .../kubeadm_1.25.7-00_amd64.deb ...
+    master1: Unpacking kubeadm (1.25.7-00) ...
+    master1: Setting up cri-tools (1.26.0-00) ...
+    master1: Setting up kubeadm (1.25.7-00) ...
+    master1: Processing triggers for man-db (2.10.2-1) ...
+    master1: 
+    master1: Running kernel seems to be up-to-date.
+    master1: 
+    master1: No services need to be restarted.
+    master1: 
+    master1: No containers need to be restarted.
+    master1: 
+    master1: No user sessions are running outdated binaries.
+    master1: 
+    master1: No VM guests are running outdated hypervisor (qemu) binaries on this host.
+    master1: kubeadm set on hold.
+    master1: kubelet set on hold.
+    master1: kubectl set on hold.
+    master1: Add the node IP to KUBELET_EXTRA_ARGS.
+    master1: Reading package lists...
+    master1: Building dependency tree...
+    master1: Reading state information...
+    master1: The following additional packages will be installed:
+    master1:   libjq1 libonig5
+    master1: The following NEW packages will be installed:
+    master1:   jq libjq1 libonig5
+    master1: 0 upgraded, 3 newly installed, 0 to remove and 101 not upgraded.
+    master1: Need to get 357 kB of archives.
+    master1: After this operation, 1,087 kB of additional disk space will be used.
+    master1: Get:1 http://us.archive.ubuntu.com/ubuntu jammy/main amd64 libonig5 amd64 6.9.7.1-2build1 [172 kB]
+    master1: Get:2 http://us.archive.ubuntu.com/ubuntu jammy/main amd64 libjq1 amd64 1.6-2.1ubuntu3 [133 kB]
+    master1: Get:3 http://us.archive.ubuntu.com/ubuntu jammy/main amd64 jq amd64 1.6-2.1ubuntu3 [52.5 kB]
+    master1: dpkg-preconfigure: unable to re-open stdin: No such file or directory
+    master1: Fetched 357 kB in 2s (189 kB/s)
+    master1: Selecting previously unselected package libonig5:amd64.
+    master1: (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 44376 files and directories currently installed.)
+    master1: Preparing to unpack .../libonig5_6.9.7.1-2build1_amd64.deb ...
+    master1: Unpacking libonig5:amd64 (6.9.7.1-2build1) ...
+    master1: Selecting previously unselected package libjq1:amd64.
+    master1: Preparing to unpack .../libjq1_1.6-2.1ubuntu3_amd64.deb ...
+    master1: Unpacking libjq1:amd64 (1.6-2.1ubuntu3) ...
+    master1: Selecting previously unselected package jq.
+    master1: Preparing to unpack .../jq_1.6-2.1ubuntu3_amd64.deb ...
+    master1: Unpacking jq (1.6-2.1ubuntu3) ...
+    master1: Setting up libonig5:amd64 (6.9.7.1-2build1) ...
+    master1: Setting up libjq1:amd64 (1.6-2.1ubuntu3) ...
+    master1: Setting up jq (1.6-2.1ubuntu3) ...
+    master1: Processing triggers for man-db (2.10.2-1) ...
+    master1: Processing triggers for libc-bin (2.35-0ubuntu3.1) ...
+    master1: 
+    master1: Running kernel seems to be up-to-date.
+    master1: 
+    master1: No services need to be restarted.
+    master1: 
+    master1: No containers need to be restarted.
+    master1: 
+    master1: No user sessions are running outdated binaries.
+    master1: 
+    master1: No VM guests are running outdated hypervisor (qemu) binaries on this host.
+    master1: KUBELET_EXTRA_ARGS=--node-ip=192.168.56.11
+    master1: 
+    master1: ### Initialize Kubeadm On Master Node To Setup Control Plane (private IPs)
+    master1: I0706 15:08:46.598454    9441 version.go:256] remote version is much newer: v1.27.3; falling back to: stable-1.25
+    master1: [init] Using Kubernetes version: v1.25.11
+    master1: [preflight] Running pre-flight checks
+    master1: [preflight] Pulling images required for setting up a Kubernetes cluster
+    master1: [preflight] This might take a minute or two, depending on the speed of your internet connection
+    master1: [preflight] You can also perform this action in beforehand using 'kubeadm config images pull'
+    master1: [certs] Using certificateDir folder "/etc/kubernetes/pki"
+    master1: [certs] Generating "ca" certificate and key
+    master1: [certs] Generating "apiserver" certificate and key
+    master1: [certs] apiserver serving cert is signed for DNS names [kubernetes kubernetes.default kubernetes.default.svc kubernetes.default.svc.cluster.local master1] and IPs [10.96.0.1 192.168.56.11]
+    master1: [certs] Generating "apiserver-kubelet-client" certificate and key
+    master1: [certs] Generating "front-proxy-ca" certificate and key
+    master1: [certs] Generating "front-proxy-client" certificate and key
+    master1: [certs] Generating "etcd/ca" certificate and key
+    master1: [certs] Generating "etcd/server" certificate and key
+    master1: [certs] etcd/server serving cert is signed for DNS names [localhost master1] and IPs [192.168.56.11 127.0.0.1 ::1]
+    master1: [certs] Generating "etcd/peer" certificate and key
+    master1: [certs] etcd/peer serving cert is signed for DNS names [localhost master1] and IPs [192.168.56.11 127.0.0.1 ::1]
+    master1: [certs] Generating "etcd/healthcheck-client" certificate and key
+    master1: [certs] Generating "apiserver-etcd-client" certificate and key
+    master1: [certs] Generating "sa" key and public key
+    master1: [kubeconfig] Using kubeconfig folder "/etc/kubernetes"
+    master1: [kubeconfig] Writing "admin.conf" kubeconfig file
+    master1: [kubeconfig] Writing "kubelet.conf" kubeconfig file
+    master1: [kubeconfig] Writing "controller-manager.conf" kubeconfig file
+    master1: [kubeconfig] Writing "scheduler.conf" kubeconfig file
+    master1: [kubelet-start] Writing kubelet environment file with flags to file "/var/lib/kubelet/kubeadm-flags.env"
+    master1: [kubelet-start] Writing kubelet configuration to file "/var/lib/kubelet/config.yaml"
+    master1: [kubelet-start] Starting the kubelet
+    master1: [control-plane] Using manifest folder "/etc/kubernetes/manifests"
+    master1: [control-plane] Creating static Pod manifest for "kube-apiserver"
+    master1: [control-plane] Creating static Pod manifest for "kube-controller-manager"
+    master1: [control-plane] Creating static Pod manifest for "kube-scheduler"
+    master1: [etcd] Creating static Pod manifest for local etcd in "/etc/kubernetes/manifests"
+    master1: [wait-control-plane] Waiting for the kubelet to boot up the control plane as static Pods from directory "/etc/kubernetes/manifests". This can take up to 4m0s
+    master1: [apiclient] All control plane components are healthy after 15.004834 seconds
+    master1: [upload-config] Storing the configuration used in ConfigMap "kubeadm-config" in the "kube-system" Namespace
+    master1: [kubelet] Creating a ConfigMap "kubelet-config" in namespace kube-system with the configuration for the kubelets in the cluster
+    master1: [upload-certs] Skipping phase. Please see --upload-certs
+    master1: [mark-control-plane] Marking the node master1 as control-plane by adding the labels: [node-role.kubernetes.io/control-plane node.kubernetes.io/exclude-from-external-load-balancers]
+    master1: [mark-control-plane] Marking the node master1 as control-plane by adding the taints [node-role.kubernetes.io/control-plane:NoSchedule]
+    master1: [bootstrap-token] Using token: pejx2m.r3n4kw7vi4lttexy
+    master1: [bootstrap-token] Configuring bootstrap tokens, cluster-info ConfigMap, RBAC Roles
+    master1: [bootstrap-token] Configured RBAC rules to allow Node Bootstrap tokens to get nodes
+    master1: [bootstrap-token] Configured RBAC rules to allow Node Bootstrap tokens to post CSRs in order for nodes to get long term certificate credentials
+    master1: [bootstrap-token] Configured RBAC rules to allow the csrapprover controller automatically approve CSRs from a Node Bootstrap Token
+    master1: [bootstrap-token] Configured RBAC rules to allow certificate rotation for all node client certificates in the cluster
+    master1: [bootstrap-token] Creating the "cluster-info" ConfigMap in the "kube-public" namespace
+    master1: [kubelet-finalize] Updating "/etc/kubernetes/kubelet.conf" to point to a rotatable kubelet client certificate and key
+    master1: [addons] Applied essential addon: CoreDNS
+    master1: [addons] Applied essential addon: kube-proxy
+    master1: 
+    master1: Your Kubernetes control-plane has initialized successfully!
+    master1: 
+    master1: To start using your cluster, you need to run the following as a regular user:
+    master1: 
+    master1:   mkdir -p $HOME/.kube
+    master1:   sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+    master1:   sudo chown $(id -u):$(id -g) $HOME/.kube/config
+    master1: 
+    master1: Alternatively, if you are the root user, you can run:
+    master1: 
+    master1:   export KUBECONFIG=/etc/kubernetes/admin.conf
+    master1: 
+    master1: You should now deploy a pod network to the cluster.
+    master1: Run "kubectl apply -f [podnetwork].yaml" with one of the options listed at:
+    master1:   https://kubernetes.io/docs/concepts/cluster-administration/addons/
+    master1: 
+    master1: Then you can join any number of worker nodes by running the following on each as root:
+    master1: 
+    master1: kubeadm join 192.168.56.11:6443 --token pejx2m.r3n4kw7vi4lttexy \
+    master1: 	--discovery-token-ca-cert-hash sha256:9dbe97407b790c8588d7ff5a5764501e8936a407f9ae764f4f304eb091df4618
+    master1: 
+    master1: ### Make my kubeconfig file
+    master1: 
+    master1: ### Create alias
+    master1: 
+    master1: ### Print join command
+    master1: 
+    master1: ### Install pod network (skipped)
