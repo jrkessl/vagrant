@@ -17,11 +17,16 @@ Vagrant.configure("2") do |config|
         vb.memory = 2048
         vb.cpus = 2
     end
+
     master1.vm.provision "shell",
-    path: "master.sh",
+    path: "common.sh",
     # args: "=1.25.7-00"
     # args: "=1.26.6-00"
     args: "" # get latest version
+
+    master1.vm.provision "shell",
+    path: "master.sh"
+
   end
 
   config.vm.define "worker1" do |worker1|
@@ -32,27 +37,31 @@ Vagrant.configure("2") do |config|
         vb.memory = 2048
         vb.cpus = 2
     end
+
     worker1.vm.provision "shell",
-    path: "master.sh",
+    path: "common.sh",
     # args: "=1.25.7-00"
     # args: "=1.26.6-00"
     args: "" # get latest version
+
+    worker1.vm.provision "shell",
+    path: "worker.sh"
   end
 
-  config.vm.define "worker2" do |worker2|
-    worker2.vm.box = "bento/ubuntu-22.04"
-    worker2.vm.hostname = "worker2"
-    worker2.vm.network "private_network", ip: "192.168.56.22"
-    worker2.vm.provider "virtualbox" do |vb|
-        vb.memory = 2048
-        vb.cpus = 2
-    end
-    worker2.vm.provision "shell",
-    path: "master.sh",
-    # args: "=1.25.7-00"
-    # args: "=1.26.6-00"
-    args: "" # get latest version
-  end
+  # config.vm.define "worker2" do |worker2|
+  #   worker2.vm.box = "bento/ubuntu-22.04"
+  #   worker2.vm.hostname = "worker2"
+  #   worker2.vm.network "private_network", ip: "192.168.56.22"
+  #   worker2.vm.provider "virtualbox" do |vb|
+  #       vb.memory = 2048
+  #       vb.cpus = 2
+  #   end
+  #   worker2.vm.provision "shell",
+  #   path: "worker.sh",
+  #   # args: "=1.25.7-00"
+  #   # args: "=1.26.6-00"
+  #   args: "" # get latest version
+  # end
 
 end
 
