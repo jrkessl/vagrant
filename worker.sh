@@ -70,9 +70,9 @@ curl -fsSL https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo gpg --de
 # sudo apt-get update
 
 sudo apt-get update
-sudo apt install kubectl=$1 -y 
-sudo apt install kubelet=$1 -y 
-sudo apt install kubeadm=$1 -y 
+sudo apt install kubectl$1 -y 
+sudo apt install kubelet$1 -y 
+sudo apt install kubeadm$1 -y 
 sudo apt-mark hold kubeadm kubelet kubectl
 
 echo "Add the node IP to KUBELET_EXTRA_ARGS."
