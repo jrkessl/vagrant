@@ -18,7 +18,8 @@ Vagrant.configure("2") do |config|
         vb.cpus = 2
     end
     master1.vm.provision "shell",
-    path: "master.sh"
+    path: "master.sh",
+    args: "1.25.7-00"
   end
 
   config.vm.define "worker1" do |worker1|
@@ -30,7 +31,8 @@ Vagrant.configure("2") do |config|
         vb.cpus = 2
     end
     worker1.vm.provision "shell",
-    path: "worker.sh"
+    path: "worker.sh",
+    args: "1.25.7-00"
   end
 
   config.vm.define "worker2" do |worker2|
@@ -42,34 +44,10 @@ Vagrant.configure("2") do |config|
         vb.cpus = 2
     end
     worker2.vm.provision "shell",
-    path: "worker.sh"
+    path: "worker.sh",
+    args: "1.25.7-00"
   end
 
-  
-#   config.vm.define "worker1" do |worker1|
-#       worker1.vm.box = "bento/ubuntu-22.04"
-#       worker1.vm.hostname = "worker1"
-#       worker1.vm.network "private_network", ip: "192.168.56.20"
-#       worker1.vm.provider "virtualbox" do |vb|
-#           vb.memory = 1024
-#           vb.cpus = 1
-#       end
-#   end
-
-    
-  # (1..2).each do |i|
-
-  # config.vm.define "node0#{i}" do |node|
-  #   node.vm.box = "bento/ubuntu-22.04"
-  #   node.vm.hostname = "worker#{i}"
-  #   node.vm.network "private_network", ip: "192.168.56.2#{i}"
-  #   node.vm.provider "virtualbox" do |vb|
-  #       vb.memory = 1024
-  #       vb.cpus = 1
-  #   end
-  # end
-  
-  # end
 end
 
 
