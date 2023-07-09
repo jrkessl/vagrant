@@ -1,0 +1,69 @@
+Vagrant.configure("2") do |config|
+  config.vm.provision "shell", inline: <<-SHELL
+      apt-get update -y
+      # echo "192.168.56.11  master1" >> /etc/hosts
+      # echo "192.168.56.21  worker1" >> /etc/hosts
+      # echo "192.168.56.22  worker2" >> /etc/hosts
+  SHELL
+
+  config.vm.synced_folder "./share", "/vagrant", disabled: false, create: true
+  # config.vm.synced_folder "/tmp", "/tmp"
+  
+  config.vm.define "master125" do |master1|
+    master1.vm.box = "bento/ubuntu-22.04"
+    master1.vm.hostname = "master125"
+    master1.vm.network "private_network", ip: "192.168.56.11"
+    master1.vm.provider "virtualbox" do |vb|
+        vb.memory = 2048
+        vb.cpus = 2
+    end
+    master1.vm.provision "shell",
+    path: "../common.sh",
+    args: "=1.25.7-00"
+    # args: "=1.26.6-00"
+    # args: "" # get latest version
+    master1.vm.provision "shell",
+    path: "../master.sh"
+  end
+
+  config.vm.define "master126" do |master2|
+    master2.vm.box = "bento/ubuntu-22.04"
+    master2.vm.hostname = "master126"
+    master2.vm.network "private_network", ip: "192.168.56.12"
+    master2.vm.provider "virtualbox" do |vb|
+        vb.memory = 2048
+        vb.cpus = 2
+    end
+    master2.vm.provision "shell",
+    path: "../common.sh",
+    # args: "=1.25.7-00"
+    args: "=1.26.6-00"
+    # args: "" # get latest version
+    master2.vm.provision "shell",
+    path: "../master.sh"
+  end
+
+  config.vm.define "masterlat" do |master3|
+    master3.vm.box = "bento/ubuntu-22.04"
+    master3.vm.hostname = "masterlat"
+    master3.vm.network "private_network", ip: "192.168.56.13"
+    master3.vm.provider "virtualbox" do |vb|
+        vb.memory = 2048
+        vb.cpus = 2
+    end
+    master3.vm.provision "shell",
+    path: "../common.sh",
+    # args: "=1.25.7-00"
+    # args: "=1.26.6-00"
+    args: "" # get latest version
+    master3.vm.provision "shell",
+    path: "../master.sh"
+  end
+
+end
+
+
+# check:
+# https://devopscube.com/setup-kubernetes-cluster-kubeadm/
+
+
