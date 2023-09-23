@@ -20,9 +20,11 @@ Vagrant.configure("2") do |config|
 
     master1.vm.provision "shell",
     path: "common.sh",
-    # args: "=1.25.7-00"
-    # args: "=1.26.6-00"
-    args: "" # get latest version
+    # args: "=1.25.14-00" # uncomment this line to install Kubernetes 1.25
+    # args: "=1.26.9-00"  # uncomment this line to install Kubernetes 1.26
+    args: "=1.27.6-00"  # uncomment this line to install Kubernetes 1.27
+    # args: "=1.28.2-00"  # uncomment this line to install Kubernetes 1.28
+    # args: ""              # not passing this parameter means the latest Kubernetes, whatever that is now, will get installed.
 
     master1.vm.provision "shell",
     path: "master.sh"
@@ -40,9 +42,11 @@ Vagrant.configure("2") do |config|
 
     worker1.vm.provision "shell",
     path: "common.sh",
-    # args: "=1.25.7-00"
-    # args: "=1.26.6-00"
-    args: "" # get latest version
+    # args: "=1.25.14-00" # uncomment this line to install Kubernetes 1.25
+    # args: "=1.26.9-00"  # uncomment this line to install Kubernetes 1.26
+    args: "=1.27.6-00"  # uncomment this line to install Kubernetes 1.27
+    # args: "=1.28.2-00"  # uncomment this line to install Kubernetes 1.28
+    # args: ""              # not passing this parameter means the latest Kubernetes, whatever that is now, will get installed.
 
     worker1.vm.provision "shell",
     path: "worker.sh"
