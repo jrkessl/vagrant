@@ -19,7 +19,7 @@ Vagrant.configure("2") do |config|
     end
 
     master1.vm.provision "shell",
-    path: "common.sh",
+    # path: "common.sh",
     # args: "=1.25.14-00" # uncomment this line to install Kubernetes 1.25
     # args: "=1.26.9-00"  # uncomment this line to install Kubernetes 1.26
     args: "=1.27.6-00"  # uncomment this line to install Kubernetes 1.27
@@ -41,7 +41,7 @@ Vagrant.configure("2") do |config|
     end
 
     worker1.vm.provision "shell",
-    path: "common.sh",
+    # path: "common.sh",
     # args: "=1.25.14-00" # uncomment this line to install Kubernetes 1.25
     # args: "=1.26.9-00"  # uncomment this line to install Kubernetes 1.26
     args: "=1.27.6-00"  # uncomment this line to install Kubernetes 1.27
