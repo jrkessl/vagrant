@@ -17,6 +17,15 @@ curl https://raw.githubusercontent.com/jrkessl/exampleMicroservice/master/deploy
 
 Comandos:
 
+1. Install Vagrant
+2. Install Virtualbox ( https://www.virtualbox.org/wiki/Downloads ) 
+3. vagrant up 
+4. vagrant ssh master1
+
+
+vagrant status
+
+
 vagrant up 
 vagrant status
 vagrant ssh master1
