@@ -1,5 +1,5 @@
 # Vagrant and Kubernetes from apt
-This project has code to use Vagrant to launch VMs in your workstation, and, in them, install Kubernetes from the apt repositories. 
+Use Vagrant to launch VMs in your workstation, and, in them, automatically install Kubernetes from the apt repositories. 
 ## Overview 
 - A Vagrant script (filename: `Vagrantfile`) contains the code to launch the VMs. 
 - Bash scripts `master.sh`, `worker.sh`, `common.sh` are referenced by Vagrantfile to install software and apply settings.
