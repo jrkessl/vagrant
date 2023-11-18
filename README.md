@@ -1,3 +1,9 @@
+# Kubeadm from scratch  
+Lets try setting up a new cluster with Kubeadm, from scratch, trying to learn all the process, instead of following the tutorial. Let's follow the kubeadm instructions in the Kubernetes website.  
+The text below is outdated.  
+Nov 18th 2023.  
+
+
 # Vagrant and Kubernetes from apt
 Use Vagrant to launch VMs in your workstation, and, in them, automatically install Kubernetes from the apt repositories. 
 ## Overview 
