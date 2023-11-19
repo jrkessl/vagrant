@@ -73,5 +73,3 @@ end
 
 # check:
 # https://devopscube.com/setup-kubernetes-cluster-kubeadm/
-
-
