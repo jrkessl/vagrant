@@ -8,6 +8,8 @@ local_ip="$(ip --json a s | jq -r '.[] | if .ifname == "eth1" then .addr_info[] 
 IPADDR=$local_ip
 NODENAME=$(hostname -s)
 POD_CIDR="10.0.0.0/16"
+echo "Will run kubeadm init:"
+echo "sudo kubeadm init --apiserver-advertise-address=$IPADDR  --apiserver-cert-extra-sans=$IPADDR  --pod-network-cidr=$POD_CIDR --node-name $NODENAME --ignore-preflight-errors Swap"
 sudo kubeadm init --apiserver-advertise-address=$IPADDR  --apiserver-cert-extra-sans=$IPADDR  --pod-network-cidr=$POD_CIDR --node-name $NODENAME --ignore-preflight-errors Swap
 
 echo ""
@@ -28,7 +30,7 @@ sudo chmod 777 /vagrant/join-command
 
 echo ""
 echo "### Step 4 - Install pod network"
-# kubectl apply -f https://raw.githubusercontent.com/projectcalico/calico/v3.25.0/manifests/calico.yaml
+kubectl apply -f https://raw.githubusercontent.com/projectcalico/calico/v3.25.0/manifests/calico.yaml
 
 echo ""
 echo "### End of master script"

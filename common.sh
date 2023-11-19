@@ -1,10 +1,8 @@
 #!/bin/bash
 echo ""
 echo "### Starting common script"
-
-
-
 echo ""
+
 echo "### Step 1 - Forwarding IPv4 and letting iptables see bridged traffic" 
 echo ""
 echo "### Step 1.1 - cat into modules-load.d/k8s.conf" 
@@ -58,12 +56,9 @@ sudo apt-get update
 sudo apt-get install cri-o cri-o-runc cri-tools -y
 sudo systemctl daemon-reload
 sudo systemctl enable crio --now
-
-
 echo ""
+
 echo "### Step 4 - Install Kubeadm & Kubelet & Kubectl"
-
-
 echo ""
 echo "### Step 4.1 - Install necessary tools"
 echo "### Install apt-transport-https, ca-certificates, curl"
@@ -72,46 +67,29 @@ sudo apt install apt-transport-https=2.4.9 -y
 sudo apt install ca-certificates=20230311ubuntu0.22.04.1 -y
 sudo apt install curl=7.81.0-1ubuntu1.10 -y
 sudo apt-mark hold apt-transport-https ca-certificates curl
-
 echo ""
 echo "### Step 4.2 - Install Kubernetes repository"
-
-
-# these 3 commands below came from https://github.com/kubernetes/release/issues/2862
 sudo mkdir -p /etc/apt/keyrings
-
-
-# echo "deb [signed-by=/etc/apt/keyrings/kubernetes.gpg] https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list
-
 # This overwrites any existing configuration in /etc/apt/sources.list.d/kubernetes.list
 echo 'deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.28/deb/ /' | sudo tee /etc/apt/sources.list.d/kubernetes.list
-
-
 curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.28/deb/Release.key | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
-# curl -fsSL https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes.gpg
-
-
-
-
 echo ""
 echo "### Step 4.3 - Finally install"
-
-
 sudo apt-get update
 sudo apt install kubectl$1 -y 
 sudo apt install kubelet$1 -y 
 sudo apt install kubeadm$1 -y 
 sudo apt-mark hold kubeadm kubelet kubectl
-
 echo ""
+
 echo "### Step 5 - Add the node IP to KUBELET_EXTRA_ARGS."
 sudo apt-get install jq=1.6-2.1ubuntu3 -y
 local_ip="$(ip --json a s | jq -r '.[] | if .ifname == "eth1" then .addr_info[] | if .family == "inet" then .local else empty end else empty end')"
 cat <<EOF | sudo tee /etc/default/kubelet
 KUBELET_EXTRA_ARGS=--node-ip=$local_ip
 EOF
-
 echo ""
+
 echo "### Step 6 - Just some alias"
 echo "alias k=kubectl" >> /home/vagrant/.bashrc
 echo "alias k=kubectl" >> /root/.bashrc
