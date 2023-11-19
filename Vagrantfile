@@ -42,32 +42,32 @@ Vagrant.configure("2") do |config|
 
   end
 
-  # This is a loop. With this we can provision N worker nodes. 
-  (1..3).each do |i|
+  # # This is a loop. With this we can provision N worker nodes. 
+  # (1..3).each do |i|
 
-    # This is the config for the worker nodes. 
-    config.vm.define "worker#{i}" do |worker|
-      worker.vm.box = "bento/ubuntu-22.04"
-      worker.vm.hostname = "worker#{i}"
-      worker.vm.network "private_network", ip: "192.168.56.2#{i}"
-      worker.vm.provider "virtualbox" do |vb|
-          vb.memory = 2048
-          vb.cpus = 2
-      end
+  #   # This is the config for the worker nodes. 
+  #   config.vm.define "worker#{i}" do |worker|
+  #     worker.vm.box = "bento/ubuntu-22.04"
+  #     worker.vm.hostname = "worker#{i}"
+  #     worker.vm.network "private_network", ip: "192.168.56.2#{i}"
+  #     worker.vm.provider "virtualbox" do |vb|
+  #         vb.memory = 2048
+  #         vb.cpus = 2
+  #     end
 
-      # This will run shell provisioners in this VM. Also here you can specify wich Kubernetes version you want installed.
-      worker.vm.provision "shell",
-      path: "common.sh"
-      # args: "=1.25.14-00" # uncomment this and pass this argument to install Kubernetes 1.25
-      # args: "=1.26.9-00"  # uncomment this and pass this argument to install Kubernetes 1.26
-      # args: "=1.27.6-00"  # uncomment this and pass this argument to install Kubernetes 1.27
-      # args: "=1.28.2-00"  # uncomment this and pass this argument to install Kubernetes 1.28
-      # pass no arguments so that the latest Kubernetes, whatever that is now, will get installed.
+  #     # This will run shell provisioners in this VM. Also here you can specify wich Kubernetes version you want installed.
+  #     worker.vm.provision "shell",
+  #     path: "common.sh"
+  #     # args: "=1.25.14-00" # uncomment this and pass this argument to install Kubernetes 1.25
+  #     # args: "=1.26.9-00"  # uncomment this and pass this argument to install Kubernetes 1.26
+  #     # args: "=1.27.6-00"  # uncomment this and pass this argument to install Kubernetes 1.27
+  #     # args: "=1.28.2-00"  # uncomment this and pass this argument to install Kubernetes 1.28
+  #     # pass no arguments so that the latest Kubernetes, whatever that is now, will get installed.
 
-      worker.vm.provision "shell",
-      path: "worker.sh"
-    end
-  end
+  #     worker.vm.provision "shell",
+  #     path: "worker.sh"
+  #   end
+  # end
 
 end
 
