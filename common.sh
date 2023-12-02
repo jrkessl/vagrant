@@ -35,54 +35,41 @@ install -m 0755 -d /etc/apt/keyrings
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /etc/apt/keyrings/docker.gpg
 chmod a+r /etc/apt/keyrings/docker.gpg
 echo ""
-echo "### Step 2.2 - Add the repository to Apt sources"
+echo "### Step 2.2 - Add the repository to apt sources"
 echo \
   "deb [arch="$(dpkg --print-architecture)" signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
   "$(. /etc/os-release && echo "$VERSION_CODENAME")" stable" | \
   tee /etc/apt/sources.list.d/docker.list > /dev/null
 apt-get update
 echo ""
-echo "### Step 2.3 - Install"
+echo "### Step 2.3 - Install it"
 apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y
 echo ""
 echo "### Step 3 - Disable swap"
 swapoff -a
 (crontab -l 2>/dev/null; echo "@reboot /sbin/swapoff -a") | crontab - || true
 echo ""
-echo "### Step 4 - Install Kubernetes apt repository"
+
+echo "### Step 4 - Install other tools"
+sudo apt-get install -y apt-transport-https gpg # consider specifying the version of such tools. 
 echo ""
-echo "### Step 4.1 - Install needed packages" 
-sudo apt-get install -y apt-transport-https ca-certificates curl
+
+echo "### Step 5 - Install Kubernetes apt repository"
 echo ""
-echo "### Step 4.2 - Get the signing key"
+echo "### Step 5.1 - Get the signing key"
 curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.28/deb/Release.key | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
 echo ""
-echo "### Step 4.3 - Add repository"
+echo "### Step 5.2 - Add repository"
 echo 'deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.28/deb/ /' | sudo tee /etc/apt/sources.list.d/kubernetes.list
 sudo apt-get update
 echo ""
-
-
-
-
-Step 4 - Install kubeadm 
-
-
-sudo apt-get update
-sudo apt-get install -y apt-transport-https ca-certificates curl gpg
-
-
-curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.28/deb/Release.key | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
-
-
-
-
-
-
+echo "### Step 6 - Install kubelet, kubeadm, kubectl"
 echo ""
-echo "### Create alias"
-echo "alias k=kubectl" >> /home/vagrant/.bashrc
-echo "alias k=kubectl" >> /root/.bashrc
-
+echo "### Step 6.1 - Install them" 
+sudo apt-get install -y kubelet kubeadm kubectl
+echo "### Step 6.2 - hold them down"
+sudo apt-mark hold kubelet kubeadm kubectl
 echo ""
+
 echo "### End of common script"
+echo ""
