@@ -9,7 +9,7 @@ Use Vagrant to launch VMs in your workstation, and, in them, automatically insta
 ## Overview 
 - A Vagrant script (filename: `Vagrantfile`) contains the code to launch the VMs. 
 - Bash scripts `master.sh`, `worker.sh`, `common.sh` are referenced by Vagrantfile to install software and apply settings.
-- In `Vagrantfile`, go to line 46, where it says `(1..3).each do |i|`, this is a loop. It's launching 3 VMs to be used as cluster worker nodes. You can change this "3" to a higher or lower number. Minimum 1. 
+- In `Vagrantfile`, go to line 47, where it says `(1..3).each do |i|`, this is a loop. It's launching 3 VMs to be used as cluster worker nodes. You can change this "3" to a higher or lower number. Minimum 1. 
 - Through a file share with your workstation, the VM running as master Kubernetes node will write into your project directory, into file `share\join-command` the cluster join command and token. This file is read by the worker VMs so they can join. If you manually provision other machines you can use this cluster join command.
 ## Instructions
 1. Install [Virtualbox](https://www.virtualbox.org/wiki/Downloads)
