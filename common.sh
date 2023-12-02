@@ -72,7 +72,7 @@ sudo apt-get update
 echo "### Step 6 - Install kubelet, kubeadm, kubectl"
 
 # Step 6.1 - Install them" 
-sudo apt-get install -y kubelet kubeadm kubectl
+sudo apt-get install -y kubelet$1 kubeadm$1 kubectl$1
 
 # Step 6.2 - hold them down"
 sudo apt-mark hold kubelet kubeadm kubectl
