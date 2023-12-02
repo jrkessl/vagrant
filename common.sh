@@ -45,6 +45,15 @@ echo ""
 echo "### Step 2.3 - Install it"
 apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y
 echo ""
+echo "### Step 2.4 - Set systemd cgroup driver"
+cat <<EOF | tee /etc/containerd/config.toml
+[plugins."io.containerd.grpc.v1.cri".containerd.runtimes.runc]
+[plugins."io.containerd.grpc.v1.cri".containerd.runtimes.runc.options]
+    SystemdCgroup = true
+EOF
+systemctl restart containerd
+echo ""
+
 echo "### Step 3 - Disable swap"
 swapoff -a
 (crontab -l 2>/dev/null; echo "@reboot /sbin/swapoff -a") | crontab - || true

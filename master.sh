@@ -2,6 +2,9 @@
 echo ""
 echo "### Starting master script"
 
+
+kubeadm config images pull
+
 # echo "### Step 1 - Install kubectl (Kubernetes apt repository is already installed)" 
 # echo ""
 # sudo apt-get install -y kubectl
