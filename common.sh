@@ -60,7 +60,7 @@ swapoff -a
 echo ""
 
 echo "### Step 4 - Install other tools"
-sudo apt-get install -y apt-transport-https gpg # consider specifying the version of such tools. 
+sudo apt-get install -y apt-transport-https gpg jq # consider specifying the version of such tools. 
 echo ""
 
 echo "### Step 5 - Install Kubernetes apt repository"
