@@ -15,6 +15,13 @@ Vagrant.configure("2") do |config|
       echo "192.168.56.28  worker8" >> /etc/hosts
   SHELL
 
+  config.vm.provision "shell",
+  # path: "common.sh", args: "=1.25" # uncomment this and pass this argument to install Kubernetes 1.25
+  path: "common.sh", args: "=1.26"  # uncomment this and pass this argument to install Kubernetes 1.26
+  # path: "common.sh", args: "=1.27"  # uncomment this and pass this argument to install Kubernetes 1.27
+  # path: "common.sh", args: "=1.28"  # uncomment this and pass this argument to install Kubernetes 1.28
+  # path: "common.sh"                 # uncomment this and pass this argument to install the latest Kubernetes, whatever it is now
+
   # This line makes so that "share" project folder gets shared with the VMs, in path "/vagrant". 
   config.vm.synced_folder "./share", "/vagrant", disabled: false, create: true
   
@@ -27,15 +34,6 @@ Vagrant.configure("2") do |config|
         vb.memory = 2048
         vb.cpus = 2
     end
-
-    # This will run shell provisioners in this VM. Also here you can specify wich Kubernetes version you want installed.
-    master1.vm.provision "shell",
-    path: "common.sh"
-    # args: "=1.25.14-00" # uncomment this and pass this argument to install Kubernetes 1.25
-    # args: "=1.26.9-00"  # uncomment this and pass this argument to install Kubernetes 1.26
-    # args: "=1.27.6-00"  # uncomment this and pass this argument to install Kubernetes 1.27
-    # args: "=1.28.2-00"  # uncomment this and pass this argument to install Kubernetes 1.28
-    # pass no arguments so that the latest Kubernetes, whatever that is now, will get installed.
 
     master1.vm.provision "shell",
     path: "master.sh"
@@ -54,15 +52,6 @@ Vagrant.configure("2") do |config|
           vb.memory = 2048
           vb.cpus = 2
       end
-
-      # This will run shell provisioners in this VM. Also here you can specify wich Kubernetes version you want installed.
-      worker.vm.provision "shell",
-      path: "common.sh"
-      # args: "=1.25.14-00" # uncomment this and pass this argument to install Kubernetes 1.25
-      # args: "=1.26.9-00"  # uncomment this and pass this argument to install Kubernetes 1.26
-      # args: "=1.27.6-00"  # uncomment this and pass this argument to install Kubernetes 1.27
-      # args: "=1.28.2-00"  # uncomment this and pass this argument to install Kubernetes 1.28
-      # pass no arguments so that the latest Kubernetes, whatever that is now, will get installed.
 
       worker.vm.provision "shell",
       path: "worker.sh"
