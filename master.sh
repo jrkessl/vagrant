@@ -2,18 +2,23 @@
 echo ""
 echo "### Starting master script"
 
-echo ""
-echo "### Step 1 - Initialize Kubeadm On Master Node To Setup Control Plane (private IPs)"
-local_ip="$(ip --json a s | jq -r '.[] | if .ifname == "eth1" then .addr_info[] | if .family == "inet" then .local else empty end else empty end')"
-IPADDR=$local_ip
-NODENAME=$(hostname -s)
-POD_CIDR="10.0.0.0/16"
-echo "Will run kubeadm init:"
-echo "sudo kubeadm init --apiserver-advertise-address=$IPADDR  --apiserver-cert-extra-sans=$IPADDR  --pod-network-cidr=$POD_CIDR --node-name $NODENAME --ignore-preflight-errors Swap"
-sudo kubeadm init --apiserver-advertise-address=$IPADDR  --apiserver-cert-extra-sans=$IPADDR  --pod-network-cidr=$POD_CIDR --node-name $NODENAME --ignore-preflight-errors Swap
+# Pull the images in advance to kubeadm init (optional) 
+kubeadm config images pull
 
-echo ""
-echo "### Step 2 - Make my kubeconfig file"
+# Get the local IP of this master node (but we know already it's 192.168.56.11. It's been hardcoded in the Vagrant file).
+local_ip="$(ip --json a s | jq -r '.[] | if .ifname == "eth1" then .addr_info[] | if .family == "inet" then .local else empty end else empty end')"
+
+# Get the node name (but we already know its 'master1'. It's been hardcoded in the Vagrantfile).
+NODENAME=$(hostname -s)
+
+# Initialize the cluster
+kubeadm init --pod-network-cidr="10.0.0.0/16" --apiserver-advertise-address=$local_ip --node-name $NODENAME
+
+# Save join command
+kubeadm token create --print-join-command > /vagrant/join-command
+sudo chmod 777 /vagrant/join-command
+
+# Make my kubeconfig file 
 # For root user
 mkdir -p /root/.kube
 sudo cp -i /etc/kubernetes/admin.conf /root/.kube/config
@@ -22,15 +27,11 @@ mkdir -p /home/vagrant/.kube
 sudo cp -i /etc/kubernetes/admin.conf /home/vagrant/.kube/config
 # sudo chown $(id -u):$(id -g) /home/vagrant/.kube/config
 sudo chown vagrant:vagrant /home/vagrant/.kube/config
+echo "alias k=kubectl" >> /home/vagrant/.bashrc
+echo "alias k=kubectl" >> /root/.bashrc
 
-echo ""
-echo "### Step 3 - Print join command"
-kubeadm token create --print-join-command > /vagrant/join-command
-sudo chmod 777 /vagrant/join-command
-
-echo ""
-echo "### Step 4 - Install pod network"
-kubectl apply -f https://raw.githubusercontent.com/projectcalico/calico/v3.25.0/manifests/calico.yaml
+# Install pod network (skipped)
+# kubectl apply -f https://raw.githubusercontent.com/projectcalico/calico/v3.25.0/manifests/calico.yaml
 
 echo ""
 echo "### End of master script"
