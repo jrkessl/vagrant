@@ -60,7 +60,7 @@ echo "### Step 4 - Install other tools"
 
 sudo apt-get install -y apt-transport-https gpg jq # consider specifying the version of such tools. 
 
-echo "### Step 5 - Install Kubernetes apt repository"
+echo "### Step 5 - Install kubeadm kubelet kubectl"
 
 # First we need to do this because Kubernetes 1.28 and higher is in apt repository "pkgs.k8s.io" while 1.27 and lower is in repository "apt.kubernetes.io".
 if [[ -z "$1" ]]; then
