@@ -17,10 +17,10 @@ Vagrant.configure("2") do |config|
 
   config.vm.provision "shell",
   # path: "common.sh", args: "=1.25" # uncomment this and pass this argument to install Kubernetes 1.25
-  # path: "common.sh", args: "=1.26"  # uncomment this and pass this argument to install Kubernetes 1.26
+  path: "common.sh", args: "=1.26"  # uncomment this and pass this argument to install Kubernetes 1.26
   # path: "common.sh", args: "=1.27"  # uncomment this and pass this argument to install Kubernetes 1.27
   # path: "common.sh", args: "=1.28"  # uncomment this and pass this argument to install Kubernetes 1.28
-  path: "common.sh"                 # uncomment this and pass this argument to install the latest Kubernetes, whatever it is now
+  # path: "common.sh"                 # uncomment this and pass this argument to install the latest Kubernetes, whatever it is now
 
   # This line makes so that "share" project folder gets shared with the VMs, in path "/vagrant". 
   config.vm.synced_folder "./share", "/vagrant", disabled: false, create: true
@@ -40,23 +40,23 @@ Vagrant.configure("2") do |config|
 
   end
 
-  # # This is a loop. With this we can provision N worker nodes. 
-  # (1..3).each do |i|
+  # This is a loop. With this we can provision N worker nodes. 
+  (1..3).each do |i|
 
-  #   # This is the config for the worker nodes. 
-  #   config.vm.define "worker#{i}" do |worker|
-  #     worker.vm.box = "bento/ubuntu-22.04"
-  #     worker.vm.hostname = "worker#{i}"
-  #     worker.vm.network "private_network", ip: "192.168.56.2#{i}"
-  #     worker.vm.provider "virtualbox" do |vb|
-  #         vb.memory = 2048
-  #         vb.cpus = 2
-  #     end
+    # This is the config for the worker nodes. 
+    config.vm.define "worker#{i}" do |worker|
+      worker.vm.box = "bento/ubuntu-22.04"
+      worker.vm.hostname = "worker#{i}"
+      worker.vm.network "private_network", ip: "192.168.56.2#{i}"
+      worker.vm.provider "virtualbox" do |vb|
+          vb.memory = 2048
+          vb.cpus = 2
+      end
 
-  #     worker.vm.provision "shell",
-  #     path: "worker.sh"
-  #   end
-  # end
+      worker.vm.provision "shell",
+      path: "worker.sh"
+    end
+  end
 
 end
 
