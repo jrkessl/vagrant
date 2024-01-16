@@ -17,9 +17,9 @@ Vagrant.configure("2") do |config|
 
   config.vm.provision "shell",
   # path: "common.sh", args: "=1.25" # uncomment this and pass this argument to install Kubernetes 1.25
-  path: "common.sh", args: "=1.26"  # uncomment this and pass this argument to install Kubernetes 1.26
+  # path: "common.sh", args: "=1.26"  # uncomment this and pass this argument to install Kubernetes 1.26
   # path: "common.sh", args: "=1.27"  # uncomment this and pass this argument to install Kubernetes 1.27
-  # path: "common.sh", args: "=1.28"  # uncomment this and pass this argument to install Kubernetes 1.28
+  path: "common.sh", args: "=1.28"  # uncomment this and pass this argument to install Kubernetes 1.28
   # path: "common.sh"                 # uncomment this and pass this argument to install the latest Kubernetes, whatever it is now
 
   # This line makes so that "share" project folder gets shared with the VMs, in path "/vagrant". 
@@ -41,7 +41,7 @@ Vagrant.configure("2") do |config|
   end
 
   # This is a loop. With this we can provision N worker nodes. 
-  (1..3).each do |i|
+  (1..1).each do |i|
 
     # This is the config for the worker nodes. 
     config.vm.define "worker#{i}" do |worker|
